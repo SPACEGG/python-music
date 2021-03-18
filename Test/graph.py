@@ -1,13 +1,23 @@
 import numpy as np
-import scipy.stats as ss
 from matplotlib import pyplot as plt
 
-mean = 0
-std = 1
-num_samples = 100
-samples = np.random.normal(mean, std, size=num_samples)
-normal = (samples - samples.min()) / (samples.max() - samples.min())
-result = np.heaviside(normal, 0)
+# Setting
+minimum = -1
+maximum = 1
+bit = 2
 
-plt.plot(result)
+# Make noises
+samples = np.random.uniform(minimum, maximum, 100)
+steps = bit ** 2
+
+# Quantization
+distance = (maximum - minimum) / (steps - 1)
+stairs = np.arange(minimum, maximum + distance, distance) 
+quantized = np.array([stairs[np.abs(stairs - i).argmin()] for i in samples])
+
+# Results
+plt.title('random')
+plt.plot(samples)
+plt.plot(quantized)
+plt.legend(['random', 'quantized'])
 plt.show()
