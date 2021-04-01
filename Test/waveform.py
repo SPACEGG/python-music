@@ -59,7 +59,7 @@ plt.title('waveform')
 plt.xlabel('sample')
 plt.plot(waveform_quiet)
 plt.legend(['wave'])
-# plt.xlim(0, 300)
+plt.xlim(0, 300)
 plt.ylim(-1.1, 1.1)
 plt.show()
 
@@ -68,7 +68,6 @@ plt.show()
 # write('sqr_wave.wav', sps, waveform_integers)
 
 # Play the waveform out the speakers
-
 sd.play(waveform_quiet, sps)
 time.sleep(duration_s)
 sd.stop()
