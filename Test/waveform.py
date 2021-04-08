@@ -12,7 +12,7 @@ sps = 44100
 freq_hz = 440.0
 
 # Duration
-duration_s = 3.0
+duration_s = 1.0
 
 def noise(array, freq, bit, sp = 44100):
     # Make noises
@@ -36,7 +36,8 @@ x = np.arange(duration_s * sps)
 
 # triangle
 waveform = signal.sawtooth(2 * np.pi * (freq_hz / sps) * x, 0.5)
-waveform += signal.sawtooth(2 * np.pi * (659.26 / sps) * x, 0.5)
+waveform2 = signal.sawtooth(2 * np.pi * (659.26 / sps) * x, 0.5)
+waveform = np.concatenate([waveform, waveform2])
 
 # pulse 50%
 # waveform = signal.square(2 * np.pi * (freq_hz / sps) * x, 0.5)
@@ -69,5 +70,5 @@ plt.show()
 
 # Play the waveform out the speakers
 sd.play(waveform_quiet, sps)
-time.sleep(duration_s)
+time.sleep(len(waveform_quiet) / sps)
 sd.stop()
