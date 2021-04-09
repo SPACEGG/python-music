@@ -9,3 +9,5 @@ class Waveform(Enum):
     Saw = 5
     Noise1 = 6
     Noise4 = 7
+    Noise8 = 8
+    Line = 9
